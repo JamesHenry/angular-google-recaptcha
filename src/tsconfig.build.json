@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.base",
+  "compilerOptions": {
+    "target": "es2015"
+  },
+  "files": ["./index.ts"],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "flatModuleOutFile": "angular-google-recaptcha.js",
+    "flatModuleId": "angular-google-recaptcha"
+  }
+}
