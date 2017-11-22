@@ -10,15 +10,14 @@ import {
   Component,
   ViewChild,
   ElementRef,
-  /**
-   * TODO: Speak to Kara about @Self() on the NgControl
-   * breaking all tests
-   */
-  // Self,
+  Self,
+  Optional,
   OnInit,
   NgZone,
   ChangeDetectorRef,
   Injectable,
+  OnDestroy,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { SITE_KEY } from './recaptcha.tokens';
@@ -44,12 +43,14 @@ export class ScriptLoaderService {
 
 @Component({
   selector: 'recaptcha',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="angular-google-recaptcha-container" #container></div>
   `,
   providers: [ScriptLoaderService],
 })
-export class RecaptchaComponent implements OnInit, ControlValueAccessor {
+export class RecaptchaComponent
+  implements OnInit, OnDestroy, ControlValueAccessor {
   @Output() scriptLoad = new EventEmitter<void>();
   @Output() scriptError = new EventEmitter<ErrorEvent>();
 
@@ -66,8 +67,10 @@ export class RecaptchaComponent implements OnInit, ControlValueAccessor {
 
   constructor(
     @Inject(SITE_KEY) private siteKey: string,
-    private scriptLoaderService: ScriptLoaderService,
+    @Self()
+    @Optional()
     private controlDir: NgControl,
+    private scriptLoaderService: ScriptLoaderService,
     private zone: NgZone,
     private cd: ChangeDetectorRef,
   ) {
@@ -102,6 +105,10 @@ export class RecaptchaComponent implements OnInit, ControlValueAccessor {
       return null;
     });
     control.updateValueAndValidity();
+  }
+
+  ngOnDestroy() {
+    this.unsetGlobalHandlers();
   }
 
   /**
@@ -141,6 +148,10 @@ export class RecaptchaComponent implements OnInit, ControlValueAccessor {
     };
   }
 
+  private unsetGlobalHandlers(): void {
+    delete (window as any)[this.GLOBAL_ON_LOAD_CALLBACK_NAME];
+  }
+
   /**
    * Create a <script> element and inject it into the page in order
    * to load the recaptcha lib. Emit load or error events from the relevant
@@ -175,7 +186,7 @@ export class RecaptchaComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
-   * Handler which will be register with the recaptcha lib to be called
+   * Handler which will be registered with the recaptcha lib to be called
    * whenever it has a valid status
    */
   private onRecaptchaValidCallback(): void {
@@ -187,7 +198,7 @@ export class RecaptchaComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
-   * Handler which will be register with the recaptcha lib to be called
+   * Handler which will be registered with the recaptcha lib to be called
    * whenever its valid status expires
    */
   private onRecaptchaExpiredCallback(): void {

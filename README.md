@@ -1,10 +1,17 @@
-[![Travis](https://img.shields.io/travis/JamesHenry/angular-google-recaptcha.svg?style=flat-square)](https://travis-ci.org/JamesHenry/angular-google-recaptcha)
-[![GitHub license](https://img.shields.io/npm/l/angular-google-recaptcha.svg?style=flat-square)](https://github.com/JamesHenry/angular-google-recaptcha/blob/master/LICENSE)
-[![npm](https://img.shields.io/npm/v/angular-google-recaptcha.svg?style=flat-square)](https://www.npmjs.com/package/angular-google-recaptcha) [![npm](https://img.shields.io/npm/dt/angular-google-recaptcha.svg?style=flat-square)](https://www.npmjs.com/package/angular-google-recaptcha)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
-
 <h1 align="center">Angular Google reCAPTCHA</h1>
+
+<p align="center">
+    <a href="https://travis-ci.org/JamesHenry/angular-google-recaptcha"><img src="https://img.shields.io/travis/JamesHenry/angular-google-recaptcha.svg?style=flat-square" alt="Travis"/></a>
+    <a href="https://github.com/JamesHenry/angular-google-recaptcha/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/angular-google-recaptcha.svg?style=flat-square" alt="GitHub license" /></a>
+    <a href="https://www.npmjs.com/package/angular-google-recaptcha"><img src="https://img.shields.io/npm/v/angular-google-recaptcha.svg?style=flat-square" alt="NPM Version" /></a>
+    <a href="https://www.npmjs.com/package/angular-google-recaptcha"><img src="https://img.shields.io/npm/dt/angular-google-recaptcha.svg?style=flat-square" alt="NPM Downloads" /></a>
+    <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly" /></a>
+    <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square" alt="semantic-release" /></a>
+</p>
+
+<p align="center">
+    <a href="http://forthebadge.com"><img src="http://forthebadge.com/images/badges/built-with-love.svg" /></a>
+</p>
 
 Google's reCAPTCHA is an awesome, UX-friendly way of ensuring that the users who are submitting your forms are actually humans...
 
@@ -30,7 +37,7 @@ yarn add angular-google-material
 
 # Usage
 
-1. If you haven't yet registered your site for use with reCAPTCHA, you'll need to do that next.
+### 1. If you haven't yet registered your site for use with reCAPTCHA, you'll need to do that next.
 
 Head over to:
 
@@ -40,7 +47,7 @@ Head over to:
 
 Once you have done that, a **"site key"** will have been generated for you. You need to find this and copy it to you clipboard as it will be important in the next step!
 
-2. Now all you need to do is pass that site key into the library, and this is done via the `forRoot` convention on the `NgModule` which the library exposes.
+### 2. Now all you need to do is pass that site key into the library, and this is done via the `forRoot` convention on the `NgModule` which the library exposes.
 
 E.g.
 
@@ -53,6 +60,7 @@ import { RecaptchaModule } from 'angular-google-recaptcha';
 @NgModule({
     imports: [
         BrowserModule,
+        ReactiveFormsModule,
         RecaptchaModule.forRoot({
             siteKey: 'YOUR_SITE_KEY_HERE',
         }),
@@ -64,7 +72,7 @@ export class AppModule { }
 
 As you might expect, you need to be using the `@angular/forms` package (either the `FormsModule` or `ReactiveFormsModule`) within your project, otherwise this library will have nothing to hook into.
 
-3. With everything wired up, you can now use the `<recaptcha>` component!
+### 3. With everything wired up, you can now use the `<recaptcha>` component!
 
 E.g. For reactive forms
 
@@ -85,7 +93,7 @@ export class AppComponent {
     myRecaptcha = new FormControl(false);
 
     onScriptLoad() {
-        console.log('Google reCAPTCHA loaded and ready for use!')
+        console.log('Google reCAPTCHA loaded and is ready for use!')
     }
 
     onScriptError() {
@@ -113,7 +121,7 @@ export class AppComponent {
     myRecaptcha: boolean
 
     onScriptLoad() {
-        console.log('Google reCAPTCHA loaded and ready for use!')
+        console.log('Google reCAPTCHA loaded and is ready for use!')
     }
 
     onScriptError() {
@@ -121,5 +129,3 @@ export class AppComponent {
     }
 }
 ```
-
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
