@@ -9,15 +9,19 @@
     <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square" alt="semantic-release" /></a>
 </p>
 
-<p align="center">
-    <a href="http://forthebadge.com"><img src="http://forthebadge.com/images/badges/built-with-love.svg" /></a>
+<br>
+<p align="center" style="border: 1px solid blue;">
+<a href="https://typescriptcourses.com"><img src="https://user-images.githubusercontent.com/900523/33187671-54d039fc-d08b-11e7-809b-b5b99b5a8a8f.png" alt="typescriptcourses.com"/></a>
 </p>
+<br>
 
-Google's reCAPTCHA is an awesome, UX-friendly way of ensuring that the users who are submitting your forms are actually humans...
+Google's reCAPTCHA is an awesome, UX-friendly way of ensuring that the users who are submitting your forms are actually humans.
 
-Angular has fantastic built in forms functionality which makes it easy to write powerful custom components and validation logic...
+Angular has fantastic built in forms functionality which makes it easy to write powerful custom components and validation logic.
 
 This library makes it effortless to combine them!
+
+If you ever need to reference the full reCAPTCHA docs you can find them here: [reCAPTCHA docs](https://developers.google.com/recaptcha/)
 
 # Installation
 
@@ -78,6 +82,7 @@ E.g. For reactive forms
 
 ```ts
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app',
