@@ -1,19 +1,19 @@
+sudo: false
+notifications:
+  email: false
 language: node_js
 cache:
   yarn: true
   directories:
     - node_modules
-notifications:
-  email: false
 node_js:
+  - '9'
   - '8'
 script:
   - yarn test
-  - yarn semantic-release-pre
   - yarn build
 after_success:
-  - yarn publish-npm
-  - yarn semantic-release-post
+  - yarn semantic-release
 branches:
   only:
     - master
