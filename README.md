@@ -25,6 +25,8 @@ If you ever need to reference the full reCAPTCHA docs you can find them here: [r
 
 # Installation
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/JamesHenry/angular-google-recaptcha.svg)](https://greenkeeper.io/)
+
 Head over to the command line and use your favourite package manager to install and save it as a dependency:
 
 E.g.
