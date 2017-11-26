@@ -20,7 +20,8 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
-import { SITE_KEY } from './recaptcha.tokens';
+import { RECAPTCHA_CONFIG } from './recaptcha.tokens';
+import { RecaptchaModuleConfig } from './recaptcha.module';
 
 export interface InjectAndLoadScriptConfig {
   scriptSrc: string;
@@ -66,7 +67,7 @@ export class RecaptchaComponent
   };
 
   constructor(
-    @Inject(SITE_KEY) private siteKey: string,
+    @Inject(RECAPTCHA_CONFIG) private recaptchaConfig: RecaptchaModuleConfig,
     @Self()
     @Optional()
     private controlDir: NgControl,
@@ -178,7 +179,7 @@ export class RecaptchaComponent
     this.activeRecaptchaId = this.recaptchaAPI.render(
       this.container.nativeElement,
       {
-        sitekey: this.siteKey,
+        sitekey: this.recaptchaConfig.siteKey,
         callback: this.onRecaptchaValidCallback.bind(this),
         'expired-callback': this.onRecaptchaExpiredCallback.bind(this),
       },

@@ -1,16 +1,18 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { RecaptchaModule } from '../src/recaptcha/recaptcha.module';
-import { SITE_KEY } from '../src/recaptcha/recaptcha.tokens';
+import { RECAPTCHA_CONFIG } from '../src/recaptcha/recaptcha.tokens';
 
 describe('RecaptchaModule', () => {
-  const mockSiteKey = 'abc123';
+  const mockRecaptchaConfig = {
+    siteKey: 'abc123',
+  };
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RecaptchaModule.forRoot({ siteKey: mockSiteKey })],
+      imports: [RecaptchaModule.forRoot(mockRecaptchaConfig)],
     });
   });
-  it('should set the SITE_KEY token based on the configuration given in the forRoot method', () => {
-    expect(TestBed.get(SITE_KEY)).toEqual(mockSiteKey);
+  it('should set the RECAPTCHA_CONFIG token based on the configuration given in the forRoot method', () => {
+    expect(TestBed.get(RECAPTCHA_CONFIG)).toEqual(mockRecaptchaConfig);
   });
 });

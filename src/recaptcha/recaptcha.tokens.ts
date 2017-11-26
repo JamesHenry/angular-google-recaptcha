@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-export const SITE_KEY = new InjectionToken<string>(
+export const RECAPTCHA_CONFIG = new InjectionToken<string>(
   'angular-google-recaptcha siteKey',
 );

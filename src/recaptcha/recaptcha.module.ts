@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RecaptchaComponent } from './recaptcha.component';
-import { SITE_KEY } from './recaptcha.tokens';
+import { RECAPTCHA_CONFIG } from './recaptcha.tokens';
 
 export * from './recaptcha.component';
 export * from './recaptcha.tokens';
@@ -13,10 +13,10 @@ export interface RecaptchaModuleConfig {
   exports: [RecaptchaComponent],
 })
 export class RecaptchaModule {
-  static forRoot({ siteKey }: RecaptchaModuleConfig): ModuleWithProviders {
+  static forRoot(recaptchaConfig: RecaptchaModuleConfig): ModuleWithProviders {
     return {
       ngModule: RecaptchaModule,
-      providers: [{ provide: SITE_KEY, useValue: siteKey }],
+      providers: [{ provide: RECAPTCHA_CONFIG, useValue: recaptchaConfig }],
     };
   }
 }

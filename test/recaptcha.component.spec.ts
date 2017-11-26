@@ -14,7 +14,6 @@ import {
   ScriptLoaderService,
   InjectAndLoadScriptConfig,
 } from '../src/recaptcha/recaptcha.component';
-import { SITE_KEY } from '../src/recaptcha/recaptcha.tokens';
 
 const mockSiteKey = 'abc123';
 
@@ -78,7 +77,9 @@ describe('RecaptchaComponent', () => {
         fixture.detectChanges();
         const recaptchaComponentInstance =
           fixture.debugElement.children[0].componentInstance;
-        expect(recaptchaComponentInstance.siteKey).toEqual(mockSiteKey);
+        expect(recaptchaComponentInstance.recaptchaConfig.siteKey).toEqual(
+          mockSiteKey,
+        );
       });
     });
   });
