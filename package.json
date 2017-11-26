@@ -26,13 +26,13 @@
     "build:es2015": "npm run transpile:es2015 && npm run bundle:es2015",
     "build": "npm run build:es5 && npm run build:es2015",
     "postbuild":
-      "rsync -a --exclude=*.js build/ dist && npm run clean-package-json-and-write-to-dist && cp README.md dist/README.md && rm -rf build",
+      "rsync -a --exclude=*.js build/ dist && cp README.md dist/README.md && rm -rf build",
     "precommit": "npm test && lint-staged",
     "cz": "git-cz",
     "clean-package-json-and-write-to-dist":
       "node ./scripts/clean-package-json-and-write-to-dist.js",
     "semantic-release":
-      "semantic-release pre && npm publish ./dist && semantic-release post"
+      "semantic-release pre && npm run clean-package-json-and-write-to-dist && npm publish ./dist && semantic-release post"
   },
   "jest": {
     "preset": "jest-preset-angular",
