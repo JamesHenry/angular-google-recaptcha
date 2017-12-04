@@ -30,13 +30,13 @@ Head over to the command line and use your favourite package manager to install 
 E.g.
 
 ```bash
-npm install --save angular-google-material
+npm install --save angular-google-recaptcha
 ```
 
 or
 
 ```bash
-yarn add angular-google-material
+yarn add angular-google-recaptcha
 ```
 
 # Usage
