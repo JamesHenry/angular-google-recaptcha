@@ -10,8 +10,8 @@
   "es2015": "angular-google-recaptcha.js",
   "typings": "angular-google-recaptcha.d.ts",
   "peerDependencies": {
-    "@angular/core": "^4.0.1",
-    "@angular/forms": "^4.0.1",
+    "@angular/core": "^4.0.1 || ^5.0.0",
+    "@angular/forms": "^4.0.1 || ^5.0.0",
     "rxjs": "^5.3.0",
     "zone.js": "^0.8.5"
   },
