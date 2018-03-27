@@ -174,7 +174,7 @@ export class RecaptchaComponent
   public reset() {
 
     // noinspection TypeScriptUnresolvedVariable
-    (<any>window).grecaptcha.reset(this.widgetId);
+    (<any>window).grecaptcha.reset(this.activeRecaptchaId);
     this.onChange(null);
     }
 
@@ -197,10 +197,19 @@ export class RecaptchaComponent
   }
 
   /**
+   * Used to get the re-captcha answer token
+   */
+  public getResponse(): string {
+
+        // noinspection TypeScriptUnresolvedVariable
+        return (<any>window).grecaptcha.getResponse(this.activeRecaptchaId);
+    }
+
+  /**
    * Handler which will be registered with the recaptcha lib to be called
    * whenever it has a valid status
    */
-  private onRecaptchaValidCallback(): void {
+  private onRecaptchaValidCallback(response: string): void {
     this.zone.run(() => {
       this.onChange(true);
       this.onTouched();
