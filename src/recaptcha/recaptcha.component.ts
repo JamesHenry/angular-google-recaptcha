@@ -52,6 +52,8 @@ export class ScriptLoaderService {
 })
 export class RecaptchaComponent
   implements OnInit, OnDestroy, ControlValueAccessor {
+    
+  @Output() captchaResponse = new EventEmitter<string>();
   @Output() scriptLoad = new EventEmitter<void>();
   @Output() scriptError = new EventEmitter<ErrorEvent>();
 
@@ -167,6 +169,14 @@ export class RecaptchaComponent
       onErrorCallback: err => this.scriptError.emit(err),
     });
   }
+  
+  // noinspection JSUnusedGlobalSymbols
+  public reset() {
+
+    // noinspection TypeScriptUnresolvedVariable
+    (<any>window).grecaptcha.reset(this.widgetId);
+    this.onChange(null);
+    }
 
   /**
    * Use the recaptcha lib to manually render a recaptcha widget with the ViewChild
@@ -195,6 +205,7 @@ export class RecaptchaComponent
       this.onChange(true);
       this.onTouched();
       this.cd.markForCheck();
+      this.captchaResponse.emit(response);
     });
   }
 
